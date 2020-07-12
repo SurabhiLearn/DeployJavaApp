@@ -1,0 +1,6 @@
+az aks update -n myAKSCluster -g myResourceGroup --attach-acr <acrName>
+az aks get-credentials -g myResourceGroup -n myAKSCluster
+kubectl run javaapp1 --image=sprintbootdeployment.azurecr.io/surabhilearndeployjavaapp:44 -o yaml > manifests/deployment.yaml
+kubectl expose po javaapp1 --port=80 --type=NodePort -o yaml > manifests/service.yaml
+
+# copy deployment.yaml and service.yaml to Helm
