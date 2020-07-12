@@ -1,15 +1,28 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "JavaApp.fullname" . }}
+  creationTimestamp: "2020-07-12T18:17:38Z"
   labels:
-    {{- include "JavaApp.labels" . | nindent 4 }}
+    run: "{{ .Release.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}" 
+  name: "{{ .Release.Name }}"
+  namespace: default
+  resourceVersion: "20228"
+  selfLink: /api/v1/namespaces/default/services/javaapp1
+  uid: f7ef632b-290b-4044-a63c-585d11e3fc91
 spec:
-  type: ClusterIP
+  clusterIP: 10.0.184.75
+  externalTrafficPolicy: Cluster
   ports:
-    - port: 8080
-      targetPort: 8080
-      protocol: TCP
-      name: http
+  - nodePort: 32084
+    port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
-    {{- include "JavaApp.selectorLabels" . | nindent 4 }}
+    run: "{{ .Release.Name }}"
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
