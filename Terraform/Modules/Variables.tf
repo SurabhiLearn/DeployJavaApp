@@ -15,18 +15,22 @@ variable "acr_sku"{
   
 variable "appId" {
   type = string
-  default = ["f32840eb-7d91-49a0-8822-21510b37361c"]
+  default = "f32840eb-7d91-49a0-8822-21510b37361c"
 }
 
 variable "password" {
   type    = string
-  default = ["ho-6tgd_~VVtAzwa5jo2iVrwphoQJd01eI"]
+  default = "ho-6tgd_~VVtAzwa5jo2iVrwphoQJd01eI"
+}
+
+variable "object_id"{
+  type = string
+  default = "9dd3812d-720f-47d7-b195-4e3517e97adf"
 }
 
 variable "tenant" {
   type    = string
-  default = ["c73e4f3e-4bf8-4739-833e-1eaaabefd2e6"]
-}
+  default = "c73e4f3e-4bf8-4739-833e-1eaaabefd2e6"
 }
 
 variable "ac_name" {
@@ -36,11 +40,10 @@ variable "ac_name" {
 
 variable "aks_name" {
       type    = string
-  default = "JavaApp_AKS"
+  default = "JavaAppAKS"
 }
 
 variable "akv_name" {
     type    = string
-  default = "JavaApp_AKV"
+  default = "JavaAppAKV"
 }
-
