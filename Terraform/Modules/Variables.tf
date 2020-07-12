@@ -1,6 +1,6 @@
 variable "rg_name"{
     type    = string
-    default = "JavaApp"
+    default = "javarg"
 }
 
 variable "location"{
@@ -35,15 +35,15 @@ variable "tenant" {
 
 variable "ac_name" {
   type    = string
-  default = "SprintBootDeployment"
+  default = "sprintbootdeployment"
 }
 
 variable "aks_name" {
       type    = string
-  default = "JavaAppAKS"
+  default = "javaaks"
 }
 
 variable "akv_name" {
     type    = string
-  default = "JavaAppAKV"
+  default = "javaakv"
 }
