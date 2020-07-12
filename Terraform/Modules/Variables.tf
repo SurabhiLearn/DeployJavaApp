@@ -1,6 +1,6 @@
 variable "rg_name"{
     type    = string
-    default = "javarg"
+    default = "javaapp1"
 }
 
 variable "location"{
