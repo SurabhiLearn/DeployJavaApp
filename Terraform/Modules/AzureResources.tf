@@ -1,22 +1,24 @@
+  provider "azurerm" {
+  version = "~> 1.27.0"
+}
+
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.rg_name}"
-  location = "${var.location}"
+  name     = var.rg_name
+  location = var.location
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                     = "${var.ac_name}"
-  resource_group_name      = "${var.rg_name}"
-  location                 = "${var.location}"
-  sku                      = "${var.acr_sku}"
+  name                     = var.ac_name
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  sku                      = var.acr_sku
   admin_enabled            = false
-  georeplication_locations = ["East US", "West Europe"]
-  publicNetworkAccess = "Enabled"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "${var.aks_name}"
-  location            = "${var.location}"
-  resource_group_name = "${var.rg_name}"
+  name                = var.aks_name
+  location            = "East US"
+  resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = "k8s"
 
   agent_pool_profile {
@@ -26,7 +28,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     os_type         = "Linux"
     os_disk_size_gb = 30
   }
-
+  
   service_principal {
     client_id     = var.appId
     client_secret = var.password
@@ -42,30 +44,30 @@ resource "azurerm_kubernetes_cluster" "aks" {
 } 
 
 resource "azurerm_key_vault" "akv" {
-  name                        = "${var.akv_name}"
-  location                    = "${var.location}"
-  resource_group_name         = "${var.rg_name}"
+  name                        = var.akv_name
+  location                    = var.location
+  resource_group_name         = var.rg_name
   enabled_for_disk_encryption = true
   tenant_id                   = var.tenant
-  soft_delete_enabled         = true
-  purge_protection_enabled    = false
 
-  sku_name = "${var.acr_sku}"
+  sku {
+        name = "standard"
+    }
 
   access_policy {
     tenant_id = var.tenant
-    object_id = data.azurerm_client_config.current.object_id
+    object_id = var.object_id
 
     key_permissions = [
-      "get",
+      "get","list",
     ]
 
     secret_permissions = [
-      "get",
+      "get","list",
     ]
 
     storage_permissions = [
-      "get",
+      "get","list",
     ]
   }
-
+}
