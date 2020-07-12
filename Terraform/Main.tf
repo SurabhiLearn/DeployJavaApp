@@ -1,0 +1,3 @@
+module "MyAzureResources" {
+    source = "./Modules"
+}
