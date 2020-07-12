@@ -13,7 +13,7 @@ metadata:
   selfLink: /api/v1/namespaces/default/services/javaapp1
   uid: f7ef632b-290b-4044-a63c-585d11e3fc91
 spec:
-  clusterIP: 10.0.184.75
+  clusterIP:
   externalTrafficPolicy: Cluster
   ports:
   - nodePort: 32084
