@@ -11,7 +11,7 @@ metadata:
   namespace: default
   resourceVersion: "19547"
   selfLink: /api/v1/namespaces/default/pods/javaapp1
-  uid: ad9d6fa8-23df-46db-a553-458ad7bb69d5
+  uid:
 spec:
   containers:
   - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
