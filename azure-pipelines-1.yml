@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'ba0ac4d2-5fad-40a9-9705-5948b6468b90'
+  dockerRegistryServiceConnection: 'f796c292-2e3b-409a-926a-11445e22100e'
   imageRepository: 'surabhilearndeployjavaapp'
   containerRegistry: 'sprintbootdeployment.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/pipelines-java/Dockerfile'
